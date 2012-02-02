@@ -1,0 +1,304 @@
+body
+{
+  font: 80% Verdana, Arial, Helvetica, sans-serif;
+  background-color: white;
+}
+
+.firstHeading
+{
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+#bodyContent
+{
+  margin-left: 2%;
+}
+
+#bodyContent > h2
+{
+  margin-left: -2%;
+}
+
+#bodyContent > h3
+{
+  margin-left: -2%;
+}
+
+#siteSub
+{
+  font-weight: normal;
+  font-size: 1.0em;
+  margin-left: -2.0em;
+  font-size: 0.9em;
+}
+
+#content
+{
+  margin-top: 2.25em;
+}
+
+table
+{
+  clear: both;
+}
+
+h1
+{
+  font-size: 1.5em;
+}
+
+h2
+{
+  font-size: 1.3em;
+}
+
+h3, h4, h5, h6
+{
+  font-size: 1.1em;
+}
+
+#p-search
+{
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 4;
+  width: 50%;
+  padding: 0.2em;
+}
+
+#p-cactions h5, #p-search h5 { display: none; }
+
+input[type="submit"]
+{
+  border: 1px outset #369;
+  background-color: #369;
+  color: white;
+}
+
+input[type="text"],
+textarea
+{
+  border: 1px inset grey;
+}
+
+textarea
+{
+  padding-left: 0.1em;
+}
+
+a:link,
+a:visited,
+a:hover
+{
+/*  font-weight: bold;*/
+  text-decoration: underline;
+}
+
+a:link
+{
+  color: #369;
+}
+
+a:visited
+{
+  color: #636;
+}
+
+a.new:link,
+a.new:visited
+{
+  color: #739900;
+}
+
+a:hover,
+a.new:hover
+{
+  color: #CC0000;
+}
+
+h1, h2, h3
+{
+  margin: 0;
+}
+
+h1
+{
+  border-bottom: 1px solid #888888;
+}
+
+h2
+{
+  border-bottom: 1px dotted #888888;
+}
+
+#jump-to-nav
+{
+  display: none;
+}
+
+#toc
+{
+  float: right;
+  width: 30%;
+  background-color: #eeeeee;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+#catlinks
+{
+  background-color: #eeeeee;
+  padding: 0.1em 0.75em 0.1em 0.75em;
+  margin: 1em 0 0.5em 0;
+}
+
+.portlet
+{
+  width: 32%;
+  float: left;
+}
+
+.portlet h5
+{
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  border-bottom: 1px solid silver;
+}
+
+#footer
+{
+  clear: both;
+}
+
+.printfooter {
+  border-top: 1px solid black;
+  padding-top: 1em;
+  margin-top: 1em;
+}
+
+#p-cactions
+{
+  position: fixed;
+  top: 0; right: 0;
+  width: 100% !important;
+  background-color: ButtonFace;
+  padding: 0.5em;
+  padding-bottom: 3px;
+  border-bottom: 1px solid ButtonShadow;
+  display: block;
+  z-index: 3;
+  font-size: smaller;
+}
+
+#p-cactions ul
+{
+  display: block;
+  margin: 0;
+  padding: 5px;
+  text-align: right;
+}
+
+#p-cactions li
+{
+  display: inline;
+}
+
+#p-cactions li a
+{
+  display: inline;
+  padding: 0.1em 0.3em 3px 0.3em;
+  border: 1px outset #eeeeee;
+  border-bottom: 1px solid ButtonShadow;
+  text-decoration: none;
+  color: MenuText;
+}
+
+#p-cactions li.selected a
+{
+  background-color: white;
+  border-bottom: 1px solid white;
+}
+
+#p-cactions li a:hover
+{
+  background-color: ButtonHighlight;
+}
+
+img
+{
+  border: none;
+}
+
+
+div.thumb
+{
+  border: 1px solid #dddddd;
+  padding: 0.5em;
+  background-color: white;
+}
+
+.tright
+{
+  margin: 0.25em 0 0.5em 0.5em;
+  float: right;
+}
+
+.tleft
+{
+  margin: 0.25em 0.5em 0.5em 0;
+}
+
+pre
+{
+  background-color: #f7f7f7;
+  padding: 0.2em;
+  border: 1px solid #eeeeee;
+}
+
+td.diff-otitle { background:#cccccc; }
+td.diff-ntitle { background:#cccccc; }
+
+td.diff-addedline
+{
+  background:#ccffcc;
+}
+
+td.diff-deletedline
+{
+  background:#ffffaa;
+}
+
+td.diff-context
+{
+  background:#eeeeee;
+  font-size: 0.9em;
+}
+
+span.diffchange
+{
+  color: red;
+  font-weight: bold;
+}
+
+#p-lang
+{
+  width: auto;
+  clear: both;
+}
+
+#p-lang ul
+{
+  padding-left: 0;
+}
+
+#p-lang li
+{
+  list-item-style: none;
+  display: inline;
+}
+
+#footer
+{
+  font-size: 0.9em;
+}

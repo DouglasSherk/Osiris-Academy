@@ -1,0 +1,13 @@
+body {
+	margin: 0;
+	overflow: hidden;
+}
+
+#calendar {
+	position: absolute;
+	left: 0px;
+	width: 100%;
+	top: 25px;
+	height: 100%;
+	min-height: 600px;
+}

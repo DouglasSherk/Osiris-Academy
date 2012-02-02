@@ -1,0 +1,74 @@
+<?php
+	// Entry point.
+	include_once( 'includes/facebookLib.php' );
+	include_once( 'includes/statsmanager.php' );
+echo "what<br/>";
+
+	// Create our Application instance (replace this with your appId and secret).
+	$facebook = new facebookLib(array(
+		'appId'  => '129338740471924',
+		'secret' => 'c35efc8ea53fd2a56a4e557394522c5e',
+		'cookie' => true,
+	));
+echo "oh<br/>";
+	
+	$session = $facebook->getSession();
+var_dump($session);
+
+	$me = null;
+	// Session based API call.
+	if ($session) {
+		try {
+			$uid = $facebook->getUser();
+			$me = $facebook->api('/me');
+			if ( !isset( $_SESSION['uid'] ) ) {
+				Database::connect();
+				$_SESSION['uid'] = $uid;
+				$result = mysql_query( "SELECT last_login FROM " . Database::$table_users . " WHERE uid='" . $uid . "';" )
+				  or die( "Error: " . mysql_error() );
+				if ( mysql_num_rows( $result ) > 0 ) {
+					$row = mysql_fetch_assoc( $result );
+					$_SESSION['last_login'] = $row['last_login'];
+				}	
+				$name = $me['name'];
+				$email = $me['email'];
+				$group = Classes::inGroup( $facebook, $me );
+				if ( $name != 'n' ) {	
+					mysql_query( "INSERT INTO " . Database::$table_users . " VALUES ( '$uid', '$name', '$email', default, '$group' ) ON DUPLICATE KEY " .
+					 "UPDATE name = VALUES( name ), email = VALUES( email ), last_login = CURRENT_TIMESTAMP, class = VALUES( class );" )
+					 or die( "Error: " . mysql_error() );
+				}
+				StatsManager::poll( "login", $group, "", "", "", $uid );
+			}
+		} catch (FacebookApiException $e) {
+			error_log($e);
+		}
+	}
+	
+	// login or logout url will be needed depending on current user state.
+	if ($me) {
+		$logoutUrl = $facebook->getLogoutUrl();
+	} else {
+		$loginUrl = $facebook->getLoginUrl();
+		Database::connect();
+		StatsManager::poll( "view", "landing", "", "", "", $_SERVER['REMOTE_ADDR'] );
+		include_once( "landing.php" );
+		exit;
+	}
+	
+	// Check if the user is in a proper group.
+	if ( Classes::inGroup( $facebook, $me ) == null ) {
+		Database::connect();
+		StatsManager::poll( "view", "invalid", "", "", "", $facebook->getUser() );
+		include_once( "invalid.php" );
+		exit;
+	}
+
+	// Check if user is banned.
+	if ( in_array( $facebook->getUser(), Users::$banned ) ) {
+		Database::connect();
+		StatsManager::poll( "view", "banned", "", "", "", $facebook->getUser() );
+		include_once( "banned.php" );
+		exit;
+	}
+?>
